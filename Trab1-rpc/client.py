@@ -9,7 +9,7 @@ def criarVetor():
    # cria lista vazia
    vetor = []
    # aguarda o input do cliente do tamanho do vetor
-   tamanho_vetor = int(input("Insira o tamanho do vetor: "))
+   tamanho_vetor = 10000
   
    # adiciona na lista um valor variando de 0 até tamanho_vetor -1
    for i in range(tamanho_vetor):
@@ -23,7 +23,8 @@ if __name__ == "__main__":
        print("Usage: {} SERVER".format(sys.argv[0]))
        sys.exit(1)
    server = sys.argv[1]
-   conn = rpyc.connect('192.168.0.200', 18861)
+   conn = rpyc.connect('localhost', 18861)
+   conn._config['sync_request_timeout'] = None
    print(conn.root)
    print(conn.root.get_answer())
    print(conn.root.the_real_answer_though)
