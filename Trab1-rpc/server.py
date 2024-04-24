@@ -1,4 +1,5 @@
 import rpyc
+import time
 from rpyc.utils.server import ThreadedServer
 
 class MyService(rpyc.Service):
@@ -23,13 +24,13 @@ class MyService(rpyc.Service):
 	def get_question(self):
 		return "Qual é a cor do cavalo branco do Napoleão?"
 	
-
-
-
-# método exposto para somar os elementos do vetor
-def exposed_somaVetor(self, vetor):
-	soma = sum(vetor)
-	return soma
+  # método exposto para somar os elementos do vetor
+	def exposed_somaVetor(self, vetor):
+		start = time.time()
+		soma = sum(vetor)
+		end = time.time()
+		print(f"O tempo para execução da função no servidor foi de: {end-start} segundos \n")
+		return soma
 
 # para inciar o servidor
 if __name__ == "__main__":
